@@ -22,4 +22,4 @@ This is a simple Task Management application built with **Next.js** that allows 
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/shikhar525/Task-Management-app
