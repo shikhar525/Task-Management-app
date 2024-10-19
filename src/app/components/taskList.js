@@ -6,8 +6,7 @@ import TaskForm from './taskForm';
 import SearchBar from './searchBar';
 
 const TaskList = ({ initialTasks }) => {
-    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const [tasks, setTasks] = useState(savedTasks);
+    const [tasks, setTasks] = useState(initialTasks || []);
     const [search, setSearch] = useState('');
 
     const getUniqueObjects = (array, key) => {
@@ -17,10 +16,12 @@ const TaskList = ({ initialTasks }) => {
     };
 
     useEffect(() => {
-        if (initialTasks.length > 0) {
-            const updatedTasks = getUniqueObjects([...tasks, ...initialTasks], 'id');
+        if (typeof window !== 'undefined') {
+            const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const updatedTasks = getUniqueObjects([...tasks, ...savedTasks], 'id');
             setTasks(updatedTasks);
         }
+
     }, [])
 
     useEffect(() => {
